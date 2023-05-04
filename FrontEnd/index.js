@@ -1,8 +1,32 @@
 // Url de l'api :
 const apiUrl = "http://localhost:5678/api/";
-
 // on partage l'url aux autres fichiers JS :
 export { apiUrl };
+
+//*--- Affichage en mode édition :
+// Si le token est présent ..
+if (localStorage.SophieBluelToken) {
+  // on affiche tout les éléments de la class .edition-on :
+  document.querySelectorAll(".edition-on").forEach((element) => {
+    element.style.display = "flex";
+  });
+  // on fait disparaitre tout les éléments de la class .edition-off :
+  document.querySelectorAll(".edition-off").forEach((element) => {
+    element.style.display = "none";
+  });
+  // on ajoute du margin-top pour compenser la banniere :
+  header.style.marginTop = "100px";
+}
+
+//*--- Events listeners :
+
+// au click sur "logout" ..
+logoutlink.addEventListener("click", () => {
+  // on supprime le token :
+  localStorage.SophieBluelToken = "";
+  // on retourne sur index.html :
+  window.location.href = "index.html";
+});
 
 // Récpèration des travaux :
 async function getWorks() {
@@ -116,6 +140,8 @@ async function displayCategoriesButtons() {
   const categoriesFromApi = await getCategories();
   formatCategories(categoriesFromApi);
 }
+
+
 
 displayMainGallery();
 displayCategoriesButtons();

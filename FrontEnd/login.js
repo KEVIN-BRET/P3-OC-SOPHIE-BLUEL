@@ -2,6 +2,8 @@
 import { apiUrl } from "./index.js";
 // console.log(apiUrl);
 
+// import { editionMode } from "./index.js";
+
 async function authentification() {
   return fetch(`${apiUrl}users/login`, {
     method: "POST",

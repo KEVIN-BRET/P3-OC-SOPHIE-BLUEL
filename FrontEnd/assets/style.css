@@ -178,7 +178,7 @@ i {
 }
 /** end reset css**/
 
-/** LES BOUTONS **/
+/** Les boutons (start) **/
 .btn {
   cursor: pointer;
   font-family: "Syne";
@@ -204,6 +204,44 @@ i {
   color: var(--backgroung-color-light);
   background-color: var(--middle-green);
 }
+/** Les boutons (end) **/
+
+/** Le mode edition (start) **/
+.edition-on {
+  display: none;
+  gap: 0.5rem;
+}
+.edition-main-photo {
+  margin: 1rem auto;
+  width: 80%;
+}
+#editionbanniere {
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: black;
+}
+#editionbanniere i {
+  color: white;
+}
+#editionbanniere p {
+  color: white;
+}
+#editionbanniere .changements {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 1rem;
+  border-radius: 100px;
+  /* color: white; */
+}
+/** Le mode edition (end) **/
 
 body {
   line-height: 1;
