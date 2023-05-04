@@ -29,13 +29,13 @@ function formatCategories(categories) {
   // Création du bouton de filtrage "Tous" :
   const boutonFilterTout = document.createElement("button");
   boutonFilterTout.innerText = `Tous`;
-  boutonFilterTout.className = "btn btn-all";
+  boutonFilterTout.className = "btn btn-filter";
   boutonFilterTout.id = "filter-btn-all";
   // on lui attribu son parent :
   filtres.appendChild(boutonFilterTout);
 
-  // au premier chargement, le bouton "tous" est "surligné"
-  boutonFilterTout.classList.add("btn-clicked");
+  // au premier chargement, le bouton "tous" est "actif"
+  boutonFilterTout.classList.add("btn-filter-active");
   // au click, il affiche "tous" les projets et change le style du bouton :
   boutonFilterTout.addEventListener("click", () => {
     displayMainGallery(), boutonFiltreActif(boutonFilterTout);
@@ -48,7 +48,7 @@ function formatCategories(categories) {
 
     const boutonFiltrerCategories = document.createElement("button");
     boutonFiltrerCategories.innerText = nomCategorie;
-    boutonFiltrerCategories.className = `btn btn-${Categorie}`;
+    boutonFiltrerCategories.className = `btn btn-filter`;
     boutonFiltrerCategories.id = `filter-btn-${Categorie}`;
     // on leur attribu leur parent :
     filtres.appendChild(boutonFiltrerCategories);
@@ -65,10 +65,10 @@ function formatCategories(categories) {
   }
   // changer le style d'un bouton de filtre actif :
   function boutonFiltreActif(bouton) {
-    document.querySelectorAll(".btn-clicked").forEach((btn) => {
-      btn.classList.remove("btn-clicked");
+    document.querySelectorAll(".btn-filter-active").forEach((btn) => {
+      btn.classList.remove("btn-filter-active");
     });
-    bouton.classList.add("btn-clicked");
+    bouton.classList.add("btn-filter-active");
   }
 }
 

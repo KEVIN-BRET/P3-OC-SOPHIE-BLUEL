@@ -177,6 +177,33 @@ i {
 }
 /** end reset css**/
 
+/** LES BOUTONS **/
+.btn {
+  cursor: pointer;
+  font-family: "Syne";
+  height: 2rem;
+  border-radius: 60px;
+  margin: 1rem 0;
+  padding: 5px 25px;
+  transition: 0.15s ease-out;
+}
+.btn:active {
+  opacity: 0.8;
+}
+.btn-filter {
+  background-color: var(--backgroung-color-light);
+  color: var(--middle-green);
+  border: 1px solid var(--middle-green);
+}
+.btn-filter:hover {
+  color: var(--backgroung-color-light);
+  background-color: var(--middle-green);
+}
+.btn-filter-active {
+  color: var(--backgroung-color-light);
+  background-color: var(--middle-green);
+}
+
 body {
   line-height: 1;
   max-width: 1140px;
@@ -191,6 +218,16 @@ header {
 }
 section {
   margin: 50px 0;
+}
+
+.filtres {
+  /* border: 1px solid #1d6154; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 h1 {
