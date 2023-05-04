@@ -206,7 +206,7 @@ i {
 }
 /** Les boutons (end) **/
 
-/** Le mode edition (start) **/
+/** Affichage mode edition (start) **/
 .edition-on {
   display: none;
   gap: 0.5rem;
@@ -235,7 +235,29 @@ i {
   color: black;
   font-family: "Work Sans";
 }
-/** Le mode edition (end) **/
+/** Affichage mode edition (end) **/
+
+/** Affichage des erreurs (start) **/
+.apiError-container span,
+.addphotoform_group span {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  color: red;
+}
+.error span {
+  visibility: visible;
+  opacity: 1;
+  /* color: red; */
+}
+/** Affichage des erreurs (end) **/
+
 
 body {
   line-height: 1;

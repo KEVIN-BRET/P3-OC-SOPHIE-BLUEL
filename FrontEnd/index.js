@@ -2,6 +2,8 @@
 const apiUrl = "http://localhost:5678/api/";
 // on partage l'url aux autres fichiers JS :
 export { apiUrl };
+// on partage la fonction d'affichage des erreurs :
+export { errorDisplay };
 
 //*--- Affichage en mode édition :
 // Si le token est présent ..
@@ -24,7 +26,7 @@ async function getWorks() {
     .then((response) => response.json())
     .catch((error) => {
       console.log(`L'API works n'a pas répondue : ${error}`);
-      galleryerror.innerText = "Impossible d'afficher les projets !";
+      errorDisplay("apiWorkError", "Impossible de charger les projets");
     });
 }
 
@@ -34,7 +36,7 @@ async function getCategories() {
     .then((response) => response.json())
     .catch((error) => {
       console.log(`L'API categories n'a pas répondue : ${error}`);
-      galleryerror.innerText = "Impossible d'afficher les categories !";
+      errorDisplay("apiCatError", "Impossible de charger les catégories");
     });
 }
 
@@ -131,6 +133,29 @@ async function displayCategoriesButtons() {
   formatCategories(categoriesFromApi);
 }
 
+// Gestion de l'affichage des erreurs :
+function errorDisplay(tag, message, valid) {
+  // on pointe les éléments de manière dynamique :
+  const container = document.querySelector("." + tag + "-container");
+  const span = document.querySelector("." + tag + "-container > span");
+
+  // Si l'entrée n'est pas valide ..
+  if (!valid) {
+    // on ajoute la classe .error
+    container.classList.add("error");
+    // et un message d'erreur (dynamique) dans le span dedié
+    span.textContent = message;
+    // sinon
+  } else {
+    // on retire la class .error au container
+    container.classList.remove("error");
+    // et on peut aussi afficher un message dans le span
+    span.textContent = message;
+  }
+}
+
+//** Lancement de la page d'accueil :
+// On affiche la gallerie et les catégories :
 displayMainGallery();
 displayCategoriesButtons();
 
