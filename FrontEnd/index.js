@@ -18,16 +18,6 @@ if (localStorage.SophieBluelToken) {
   header.style.marginTop = "100px";
 }
 
-//*--- Events listeners :
-
-// au click sur "logout" ..
-logoutlink.addEventListener("click", () => {
-  // on supprime le token :
-  localStorage.SophieBluelToken = "";
-  // on retourne sur index.html :
-  window.location.href = "index.html";
-});
-
 // Récpèration des travaux :
 async function getWorks() {
   return fetch(`${apiUrl}works`)
@@ -141,7 +131,15 @@ async function displayCategoriesButtons() {
   formatCategories(categoriesFromApi);
 }
 
-
-
 displayMainGallery();
 displayCategoriesButtons();
+
+//*--- Events listeners :
+
+// au click sur "logout" ..
+logoutlink.addEventListener("click", () => {
+  // on supprime le token :
+  localStorage.SophieBluelToken = "";
+  // on retourne sur index.html :
+  window.location.href = "index.html";
+});

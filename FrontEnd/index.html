@@ -18,6 +18,13 @@
 
 <body>
 
+	<!-- BANNIERE EDITION -->
+	<div id="editionBanniere" class="edition-on">
+		<i class="fa-solid fa-pen-to-square"></i>
+		<p>Mode édition</p>
+		<button class="btn">Publier les changements</button>
+	</div>
+
 	<!-- HEADER -->
 	<header id="header">
 		<a href="./index.html">
@@ -37,12 +44,23 @@
 		</nav>
 	</header>
 
+	<!-- MAIN -->
 	<main>
+
+		<!-- SECTION INTRODUCTION -->
 		<section id="introduction">
 			<figure>
-				<img src="./assets/images/sophie-bluel.png" alt="">
+				<img src="./assets/images/sophie-bluel.png" alt="photo de Sophie Bluel">
+				<div id="mainPhotoEdition" class="edition-on mainPhotoEdition">
+					<i class="fa-solid fa-pen-to-square"></i>
+					<p>modifier</p>
+				</div>
 			</figure>
 			<article>
+				<div id="mainDescriptionEdition" class="edition-on">
+					<i class="fa-solid fa-pen-to-square"></i>
+					<p>modifier</p>
+				</div>
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
 					finale du chantier.</p>
@@ -56,15 +74,20 @@
 
 		<!-- SECTION PORTFOLIO -->
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
+			<div class="gallery-title-container">
+				<h2>Mes Projets</h2>
+				<div id="galleryEdition" class="edition-on">
+					<i class="fa-solid fa-pen-to-square"></i>
+					<p>modifier</p>
+				</div>
+			</div>
 			<!-- message d'erreur -->
 			<span id="filtreserror" class="error errormsg"></span>
 			<p id="galleryerror" class="error errormsg"></p>
 			<!-- Boutons de filtrage -->
-			<div class="filtres"></div>
+			<div class="filtres edition-off"></div>
 			<!-- Gallerie -->
 			<div class="gallery"></div>
-
 		</section>
 
 		<!-- SECTION CONTACT -->
