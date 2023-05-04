@@ -1,6 +1,9 @@
 // Url de l'api :
 const apiUrl = "http://localhost:5678/api/";
 
+// on partage l'url aux autres fichiers JS :
+export { apiUrl };
+
 // Récpèration des travaux :
 async function getWorks() {
   return fetch(`${apiUrl}works`)
