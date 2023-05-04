@@ -20,7 +20,7 @@ if (localStorage.SophieBluelToken) {
   header.style.marginTop = "100px";
 }
 
-// Récpèration des travaux :
+// Récupération des travaux :
 async function getWorks() {
   return fetch(`${apiUrl}works`)
     .then((response) => response.json())
@@ -30,7 +30,7 @@ async function getWorks() {
     });
 }
 
-// Récpèration des catégories :
+// Récupération des catégories :
 async function getCategories() {
   return fetch(`${apiUrl}categories`)
     .then((response) => response.json())

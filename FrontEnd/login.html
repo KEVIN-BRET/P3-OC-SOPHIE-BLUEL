@@ -36,24 +36,35 @@
 
 		<!-- SECTION LOGIN -->
 		<section id="login" class="form form-login">
-			<h2 id="logintitle">Log In</h2>
-			<form id="loginform" class="loginform_group">
-				<label for="email">Email</label>
-				<input type="email" name="email" id="email" placeholder="Saisissez votre email" required />
-				<p id="emailerror" class="errormsg"></p>
-				<label for="password">Mot de passe</label>
-				<input id="password" type="password" placeholder="Saisissez votre mot de passe" minlength="4"
+			<form id="loginForm" class="loginform_group">
+
+				<div class="logintitle-container">
+					<h2 id="logintitle">Log In</h2>
+					<span></span>
+				</div>
+
+				<div class="loginemail-container">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" placeholder="Saisissez votre email" required />
+					<span></span>
+				</div>
+				
+				<div class="loginpassword-container">
+					<label for="password">Mot de passe</label>
+					<input id="password" type="password" placeholder="Saisissez votre mot de passe" minlength="4"
 					maxlength="15" required />
-				<p id="passworderror" class="errormsg"></p>
-				<p id="loginerror" class="errormsg"></p>
-				<input type="submit" value="Se connecter " />
+					<span></span>
+				</div>
+
+				<div class="loginsubmit-container">
+					<span></span>
+					<input type="submit" value="Se connecter " />
+				</div>
+
 			</form>
 			<p><a href="#">Mot de passe oublié</a></p>
 		</section>
 	</main>
-	<!-- <div >
-    <div class="empty"></div>
-</div> -->
 
 	<!-- FOOTER -->
 	<footer id="footer-login">

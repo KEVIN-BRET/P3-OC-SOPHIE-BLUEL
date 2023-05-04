@@ -1,8 +1,12 @@
-// on importe l'url de l'api :
-import { apiUrl } from "./index.js";
-// console.log(apiUrl);
+// on importe l'url de l'api et la fonction d'affichage des erreurs :
+import { apiUrl, errorDisplay } from "./index.js";
 
-// import { editionMode } from "./index.js";
+//! PROBLEME A REGLER :
+// message d'erreur en console avec l'import !
+// pas de message d'erreur si apiUrl & errorDisplay sont en dur dans login.js ?!
+
+// On pointe le formulaire du Login :
+const loginForm = document.getElementById("loginForm");
 
 async function authentification() {
   return fetch(`${apiUrl}users/login`, {
@@ -28,19 +32,41 @@ async function authentification() {
         window.location.href = "index.html";
       } else {
         // Si les données ne contiennent pas de token, on affiche une erreur :
-        // loginerror.innerText = "email ou mot de passe incorrect !";
         console.log("email ou mot de passe incorrect !");
+        errorDisplay("logintitle", "email ou mot de passe incorrect !");
       }
     })
     .catch((error) => {
       console.log("l'API n'a pas répondue : " + error);
-      // loginerror.innerText =
-      //   "Serveur injoignable, veuillez rééssayer plus tard ..";
+      errorDisplay(
+        "logintitle",
+        "Serveur injoignable, veuillez rééssayer plus tard .."
+      );
     });
 }
 
 // A l'envoi du formulaire, on appelle authentification() :
-loginform.addEventListener("submit", (e) => {
+loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
   authentification();
+});
+
+// Validation de l'email saisit :
+loginForm.addEventListener("input", () => {
+  if (!email.validity.valid) {
+    errorDisplay("loginemail", "Veuillez saisir une adresse email valide !");
+  } else {
+    errorDisplay("loginemail", "");
+  }
+});
+// Validation du mot de passe saisit :
+loginForm.addEventListener("input", () => {
+  if (!password.validity.valid) {
+    errorDisplay(
+      "loginpassword",
+      "Le mot de passe doit contenir entre 4 et 15 caractères !"
+    );
+  } else {
+    errorDisplay("loginpassword", "");
+  }
 });

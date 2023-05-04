@@ -238,26 +238,34 @@ i {
 /** Affichage mode edition (end) **/
 
 /** Affichage des erreurs (start) **/
-.apiError-container span,
+/* .apiError-container span,
 .addphotoform_group span {
-  text-align: center;
-  font-style: italic;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
   display: block;
   visibility: hidden;
   opacity: 0;
+  color: red;
+  transition: 0.3s;
+} */
+.error span {
+  /* visibility: visible; */
+  display: block;
+  opacity: 1;
+  /* text-align: center; */
+  font-style: italic;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
   transition: 0.3s;
   color: red;
 }
-.error span {
-  visibility: visible;
-  opacity: 1;
-  /* color: red; */
-}
 /** Affichage des erreurs (end) **/
 
+.loginform_group div {
+  display: flex;
+  flex-direction: column;
+}
+.loginform_group h2 {
+  text-align: center;
+}
 
 body {
   line-height: 1;
