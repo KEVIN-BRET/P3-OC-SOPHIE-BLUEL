@@ -392,6 +392,57 @@ i {
 }
 /** MODALES GALLERIE PHOTO (end) **/
 
+/** Fenêtre de confirmation de suppression (start) **/
+#deleteConfirmationContainer {
+  display: none;
+}
+.delete-confirmation-container {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+}
+.delete-confirmation-window {
+  z-index: 5;
+  border: 1px solid grey;
+  position: absolute;
+  background: var(--backgroung-color-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.4rem;
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100vw - 2rem);
+  width: 350px;
+  padding: 1rem;
+}
+.delete-confirmation-window .response-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+.bouton-confirmation {
+  font-family: "Syne";
+}
+.bouton-confirmation:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+#annulersuppression {
+  color: #1d6154;
+}
+#confirmersuppression {
+  color: #b20a37;
+}
+/** Fenêtre de confirmation de suppression (end) **/
+
 .loginform_group div {
   display: flex;
   flex-direction: column;
@@ -453,6 +504,12 @@ h3 {
   font-weight: 400;
   font-size: 30px;
   text-align: center;
+}
+h4 {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 nav ul {

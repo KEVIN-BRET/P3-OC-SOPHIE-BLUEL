@@ -21,7 +21,7 @@ if (localStorage.SophieBluelToken) {
 
 // Récupération des travaux :
 async function getWorks() {
-  return fetch(`${apiUrl}works`)
+  return await fetch(`${apiUrl}works`)
     .then((response) => response.json())
     .catch((error) => {
       console.log(`L'API works n'a pas répondue : ${error}`);
@@ -159,14 +159,18 @@ function formatWorksInModale(works) {
     projetPreview.appendChild(projetImage);
     // trash = bouton de suppression :
     const projetDelete = document.createElement("i");
-    projetDelete.id = `deleteProjet-${works[i].id}`
+    projetDelete.id = `deleteProjet-${works[i].id}`;
     projetDelete.classList.add("delete-btn", "fa-solid", "fa-trash-can");
     projetDelete.title = "Supprimer ce projet";
     projetPreview.appendChild(projetDelete);
     // view = bouton agrandir :
     const projetLargeView = document.createElement("i");
     projetLargeView.id = `largeviewprojet-${works[i].id}`;
-    projetLargeView.classList.add("largeview-btn", "fa-solid", "fa-arrows-up-down-left-right");
+    projetLargeView.classList.add(
+      "largeview-btn",
+      "fa-solid",
+      "fa-arrows-up-down-left-right"
+    );
     projetLargeView.title = "Agrandir";
     projetPreview.appendChild(projetLargeView);
     // Soustitres :
@@ -174,6 +178,38 @@ function formatWorksInModale(works) {
     projetSousTitre.innerText = "éditer";
     projetSousTitre.dataset.id = `editerprojet-${works[i].id}`;
     projetCard.appendChild(projetSousTitre);
+
+    // Suppression d'un projet au click sur la corbeille :
+    projetDelete.onclick = (id) => deleteConfirm(id);
+
+    // ** Fonction de confirmation de suppression ** //
+    function deleteConfirm() {
+      const deleteConfirmationContainer = document.getElementById(
+        "deleteConfirmationContainer"
+      );
+      // on affiche la fenêtre de confirmation :
+      deleteConfirmationContainer.style.display = "flex";
+      // on récupère le nom du projet :
+      workNameToDelete.innerText = `${works[i].title}`;
+      // on récupère l'image & ses attibuts :
+      workImageToDelete.src = works[i].imageUrl;
+      workImageToDelete.alt = works[i].title;
+      workImageToDelete.title = works[i].title;
+      workImageToDelete.width = 150;
+      workImageToDelete.style.margin = "0 auto";
+      // évènement au click sur "Annuler" :
+      annulersuppression.onclick = () => {
+        console.log("Suppression annulée");
+        deleteConfirmationContainer.style.display = "none";
+      };
+      // évènement au click sur "Supprimer" :
+      // confirmersuppression.onclick = () => {
+      //   console.log(`Projet n°${works[i].id} supprimé !`);
+      //   deleteWork(works[i].id);
+      //   getWorksInModal();
+      //   deleteConfirmationContainer.style.display = "none";
+      // };
+    }
   }
 }
 

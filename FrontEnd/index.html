@@ -25,17 +25,29 @@
 		<div id="mainModaleWrapper" class="modale-wrapper">
 			<i id="closeModale" class="fa-solid fa-xmark"></i>
 			<h3 id="mainModaleTitle">Gallerie photo</h3>
-
 			<div class="modale-content-container">
-
 				<div id="mainModaleGallery" class="mainModaleGallery"></div>
-				
 				<div class="separation-bar"></div>
 				<button id="addPhotoBtn" class="btn btn-fixed">Ajouter une photo </button>
 				<a href="#" id="deleteallphotos">Supprimer la galerie</a>
 			</div>
 
 		</div>
+
+		<!-- Fenêtre de confrimation de suppression -->
+		<div id="deleteConfirmationContainer" class="delete-confirmation-container">
+
+			<div id="deleteConfirmationWindow" class="delete-confirmation-window">
+				<p id="deleteConfirmationTitle">Voulez-vous vraiment supprimer :</p>
+				<h4 id="workNameToDelete"></h4>
+				<img id="workImageToDelete">
+				<div class="response-box">
+					<button id="annulersuppression" class="bouton-confirmation">Annuler</button>
+					<button id="confirmersuppression" class="bouton-confirmation">Supprimer</button>
+				</div>
+			</div>
+		</div>
+
 
 	</aside>
 
