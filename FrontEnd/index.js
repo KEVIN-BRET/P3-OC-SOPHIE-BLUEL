@@ -1,9 +1,8 @@
+// Import du module de gestion d'affichage des erreurs :
+import { errorDisplay } from "./errordisplay.js";
+
 // Url de l'api :
 const apiUrl = "http://localhost:5678/api/";
-// on partage l'url aux autres fichiers JS :
-export { apiUrl };
-// on partage la fonction d'affichage des erreurs :
-export { errorDisplay };
 
 //*--- Affichage en mode édition :
 // Si le token est présent ..
@@ -133,33 +132,14 @@ async function displayCategoriesButtons() {
   formatCategories(categoriesFromApi);
 }
 
-// Gestion de l'affichage des erreurs :
-function errorDisplay(tag, message, valid) {
-  // on pointe les éléments de manière dynamique :
-  const container = document.querySelector("." + tag + "-container");
-  const span = document.querySelector("." + tag + "-container > span");
 
-  // Si l'entrée n'est pas valide ..
-  if (!valid) {
-    // on ajoute la classe .error
-    container.classList.add("error");
-    // et un message d'erreur (dynamique) dans le span dedié
-    span.textContent = message;
-    // sinon
-  } else {
-    // on retire la class .error au container
-    container.classList.remove("error");
-    // et on peut aussi afficher un message dans le span
-    span.textContent = message;
-  }
-}
 
 //** Lancement de la page d'accueil :
 // On affiche la gallerie et les catégories :
 displayMainGallery();
 displayCategoriesButtons();
 
-//*--- Events listeners :
+//*--- EVENTS LISTENERS ---*//
 
 // au click sur "logout" ..
 logoutlink.addEventListener("click", () => {
@@ -168,3 +148,32 @@ logoutlink.addEventListener("click", () => {
   // on retourne sur index.html :
   window.location.href = "index.html";
 });
+
+//** ----- ouverture / fermeture de la modale ----- **//
+
+// la modale s'ouvre au click sur le bouton modifier :
+galleryEdition.addEventListener("click", (e) => {
+  modale.style.display = "flex";
+  // getWorksInModal();
+});
+// la modale se ferme au click sur le bouton fermer (x) :
+closeModale.addEventListener("click", (e) => {
+  modale.style.display = "none";
+  getWorks();
+});
+// ou en appuyant sur Esc, on ferme la modale
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" || e.key === "Esc") {
+    modale.style.display = "none";
+    getWorks();
+  }
+});
+// ou en cliaquant à coté de la modale :
+window.addEventListener("click", (e) => {
+  // console.log(e);
+  if (e.target == modale) {
+    modale.style.display = "none";
+    getWorks();
+  }
+});
+

@@ -18,6 +18,28 @@
 
 <body>
 
+	<!-- MODALE -->
+	<aside id="modale" class="modale" role="dialog" aria-labelledby="titlemodale">
+
+		<!-- Fenêtre principale de la modale (gallerie) -->
+		<div id="mainModaleWrapper" class="modale-wrapper">
+
+			<i id="closeModale" class="fa-solid fa-xmark"></i>
+
+			<h3 id="mainModaleTitle">Gallerie photo</h3>
+
+			<div class="modale-content-container">
+				<div id="mainModaleGallery" class="mainmodalegallery-container"></div>
+				<div class="separation-bar"></div>
+				<button id="addPhotoBtn" class="btn btn-fixed">Ajouter une photo </button>
+				<a href="#" id="deleteallphotos">Supprimer la galerie</a>
+			</div>
+
+		</div>
+
+	</aside>
+
+
 	<!-- BANNIERE EDITION -->
 	<div id="editionBanniere" class="edition-on">
 		<i class="fa-solid fa-pen-to-square"></i>
@@ -46,7 +68,6 @@
 
 	<!-- MAIN -->
 	<main>
-
 		<!-- SECTION INTRODUCTION -->
 		<section id="introduction">
 			<figure>
@@ -95,7 +116,7 @@
 		</section>
 
 		<!-- SECTION CONTACT -->
-		<section id="contact" class="form form-contact">
+		<section id="contact" class="form">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
 			<form action="#" method="post">

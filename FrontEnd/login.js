@@ -1,9 +1,8 @@
-// on importe l'url de l'api et la fonction d'affichage des erreurs :
-import { apiUrl, errorDisplay } from "./index.js";
+// Import du module de gestion d'affichage des erreurs :
+import { errorDisplay } from "./errordisplay.js";
 
-//! PROBLEME A REGLER :
-// message d'erreur en console avec l'import !
-// pas de message d'erreur si apiUrl & errorDisplay sont en dur dans login.js ?!
+// Url de l'api :
+const apiUrl = "http://localhost:5678/api/";
 
 // On pointe le formulaire du Login :
 const loginForm = document.getElementById("loginForm");
@@ -44,6 +43,8 @@ async function authentification() {
       );
     });
 }
+
+//* Events Listeners :
 
 // A l'envoi du formulaire, on appelle authentification() :
 loginForm.addEventListener("submit", (e) => {
