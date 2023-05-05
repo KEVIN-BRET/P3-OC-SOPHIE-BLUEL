@@ -132,8 +132,6 @@ async function displayCategoriesButtons() {
   formatCategories(categoriesFromApi);
 }
 
-
-
 //** Lancement de la page d'accueil :
 // On affiche la gallerie et les catégories :
 displayMainGallery();
@@ -159,13 +157,13 @@ galleryEdition.addEventListener("click", (e) => {
 // la modale se ferme au click sur le bouton fermer (x) :
 closeModale.addEventListener("click", (e) => {
   modale.style.display = "none";
-  getWorks();
+  displayMainGallery();
 });
 // ou en appuyant sur Esc, on ferme la modale
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" || e.key === "Esc") {
     modale.style.display = "none";
-    getWorks();
+    displayMainGallery();
   }
 });
 // ou en cliaquant à coté de la modale :
@@ -173,7 +171,6 @@ window.addEventListener("click", (e) => {
   // console.log(e);
   if (e.target == modale) {
     modale.style.display = "none";
-    getWorks();
+    displayMainGallery();
   }
 });
-
