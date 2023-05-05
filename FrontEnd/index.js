@@ -182,7 +182,7 @@ function formatWorksInModale(works) {
     // Suppression d'un projet au click sur la corbeille :
     projetDelete.onclick = (id) => deleteConfirm(id);
 
-    // ** Fonction de confirmation de suppression ** //
+    // Fonction de confirmation de suppression :
     function deleteConfirm() {
       const deleteConfirmationContainer = document.getElementById(
         "deleteConfirmationContainer"
@@ -208,8 +208,27 @@ function formatWorksInModale(works) {
         deleteWork(works[i].id);
         displayGalleryInModale();
         deleteConfirmationContainer.style.display = "none";
+        setTimeout(() => {
+          alert(`Le projet "${works[i].title}" à été supprimé`);
+        }, 1000);
       };
     }
+
+    // Ouverture de la modale d'ajout photo :
+    addPhotoBtn.onclick = () => {
+      addPhotoModale();
+      // addPhotoWindow.style.display = "flex";
+    };
+
+    // // Fermeture de la modale d'ajout photo :
+    // closeAddPhotoWindow.onclick = () => {
+    //   addPhotoWindow.style.display = "none";
+    //   getWorksInModal();
+    // };
+    // returnToGallery.onclick = () => {
+    //   addPhotoWindow.style.display = "none";
+    //   getWorksInModal();
+    // };
   }
 }
 

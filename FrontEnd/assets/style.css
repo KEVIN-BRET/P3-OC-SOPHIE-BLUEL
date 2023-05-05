@@ -443,6 +443,49 @@ i {
 }
 /** Fenêtre de confirmation de suppression (end) **/
 
+/** fenêtre d'ajout de photo (start) **/
+#addPhotoWindowWrapper {
+  /* display: none; */
+}
+.addphoto-window-wrapper {
+  border: 1px solid grey;
+  position: absolute;
+  background-color: var(--backgroung-color-light);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.4rem;
+  width: 630px;
+  max-width: calc(100vw - 2rem);
+  min-height: 380px;
+  max-height: calc(100vh - 8rem);
+  padding: 1rem;
+}
+.addphoto-window-wrapper .wrappernav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+.addphoto-window-wrapper form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 4.5rem;
+  padding: 0 7px;
+  overflow-y: auto;
+}
+.addphoto-window-wrapper form div {
+  display: flex;
+  flex-direction: column;
+}
+.addphoto-window-wrapper form .inputs-container {
+  border: 1px solid grey;
+  display: flex;
+  padding: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/** fenêtre d'ajout de photo (end) **/
+
 .loginform_group div {
   display: flex;
   flex-direction: column;

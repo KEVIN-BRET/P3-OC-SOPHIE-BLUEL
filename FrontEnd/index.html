@@ -48,6 +48,59 @@
 			</div>
 		</div>
 
+		<!-- Fenêtre d'ajout de photo -->
+		<div id="addPhotoWindowWrapper" class="addphoto-window-wrapper">
+
+			<div class="wrappernav">
+				<i id="returnToGallery" class="fa-solid fa-arrow-left"></i>
+				<i id="closeAddPhotoWindow" class="fa-solid fa-xmark"></i>
+			</div>
+			<h3 id="addphototitle">Ajout photo</h3>
+
+			<!-- Formulaire d'envoi de photo -->
+			<form id="addphotoform" class="addphotoform_group" method="post" enctype="multipart/form-data">
+
+				<div class="inputs-container">
+
+					<div class="photo-container">
+						<div class="addphoto">
+							<div id="addPhotoMenu" class="addphoto-menu">
+								<i class="fa-sharp fa-regular fa-image"></i>
+								<label for="addphoto">+ Ajouter photo</label>
+								<input type="file" id="addphoto" name="addphoto" accept="image/png, image/jpeg">
+								<p>jpg, png : 4mo max</p>
+							</div>
+
+							<div id="importedPhotoDisplay" class="importedPhotoDisplay">
+								<img id="importedPhoto" class="importedPhoto" src=""></img>
+								<i id="closeimportedPhoto" class="fa-solid fa-xmark"></i>
+
+							</div>
+
+						</div>
+						<span>pas de photo</span>
+					</div>
+
+					<div class="title-container">
+						<label for="phototitle">Titre</label>
+						<input type=text name="phototitle" id="phototitle">
+						<span></span>
+					</div>
+
+					<div class="categorie-container">
+						<label for="categorielist">Catégorie</label>
+						<select name="categorielist" id="categorielist">
+							<!-- <option value="" disabled selected>Choisissez une catégorie</option> -->
+
+						</select>
+						<span>pas de Catégorie</span>
+					</div>
+				</div>
+
+				<div class="separation-bar"></div>
+				<input id="submitPhoto" type="submit" value="Valider" class="btn" />
+			</form>
+		</div>
 
 	</aside>
 
