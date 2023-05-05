@@ -132,6 +132,57 @@ async function displayCategoriesButtons() {
   formatCategories(categoriesFromApi);
 }
 
+// Format d'affichage de la gallerie de la modale :
+function formatWorksInModale(works) {
+  // on pointe la balise dans laquelle vont s'afficher les "projets" :
+  const mainModaleGallery = document.getElementById("mainModaleGallery");
+
+  // on efface les élément présent dans la gallery
+  mainModaleGallery.innerHTML = "";
+
+  // on affiche chaque projets avec une boucle for
+  for (let i = 0; i < works.length; i++) {
+    // Création d'une carte par projet (preview + soustitre) :
+    const projetCard = document.createElement("figure");
+    projetCard.dataset.id = `${works[i].id}`;
+    mainModaleGallery.appendChild(projetCard);
+    // projetPreview va contenir : img + trash + view :
+    const projetPreview = document.createElement("div");
+    projetPreview.dataset.id = `projetpreview-${works[i].id}`;
+    projetPreview.classList.add("projetpreview");
+    projetCard.appendChild(projetPreview);
+    // img = l'image :
+    const projetImage = document.createElement("img");
+    projetImage.src = works[i].imageUrl;
+    projetImage.alt = works[i].title;
+    projetImage.title = works[i].title;
+    projetPreview.appendChild(projetImage);
+    // trash = bouton de suppression :
+    const projetDelete = document.createElement("i");
+    projetDelete.id = `deleteProjet-${works[i].id}`
+    projetDelete.classList.add("delete-btn", "fa-solid", "fa-trash-can");
+    projetDelete.title = "Supprimer ce projet";
+    projetPreview.appendChild(projetDelete);
+    // view = bouton agrandir :
+    const projetLargeView = document.createElement("i");
+    projetLargeView.id = `largeviewprojet-${works[i].id}`;
+    projetLargeView.classList.add("largeview-btn", "fa-solid", "fa-arrows-up-down-left-right");
+    projetLargeView.title = "Agrandir";
+    projetPreview.appendChild(projetLargeView);
+    // Soustitres :
+    const projetSousTitre = document.createElement("figcaption");
+    projetSousTitre.innerText = "éditer";
+    projetSousTitre.dataset.id = `editerprojet-${works[i].id}`;
+    projetCard.appendChild(projetSousTitre);
+  }
+}
+
+// Affichage de la gallery dans la modale :
+async function displayGalleryInModale() {
+  const worksFromApi = await getWorks();
+  formatWorksInModale(worksFromApi);
+}
+
 //** Lancement de la page d'accueil :
 // On affiche la gallerie et les catégories :
 displayMainGallery();
@@ -152,7 +203,7 @@ logoutlink.addEventListener("click", () => {
 // la modale s'ouvre au click sur le bouton modifier :
 galleryEdition.addEventListener("click", (e) => {
   modale.style.display = "flex";
-  // getWorksInModal();
+  displayGalleryInModale();
 });
 // la modale se ferme au click sur le bouton fermer (x) :
 closeModale.addEventListener("click", (e) => {

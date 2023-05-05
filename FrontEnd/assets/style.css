@@ -267,7 +267,7 @@ i {
 }
 /** Affichage des erreurs (end) **/
 
-/** MODALES (start) **/
+/** MODALES GALLERIE PHOTO (start) **/
 #modale {
   display: none;
 }
@@ -321,7 +321,76 @@ i {
   margin: 0.5rem auto;
 }
 
-/** MODALES (end) **/
+/** Gallery modale : */
+.modale-content-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 4.5rem;
+  overflow: hidden;
+}
+.mainModaleGallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  overflow: auto;
+}
+.mainModaleGallery figure {
+  display: flex;
+  flex-direction: column;
+}
+.projetpreview {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.mainModaleGallery figure i {
+  position: absolute;
+  top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+  font-size: 1rem;
+  /* width: 1.2rem;
+  height: 1.2rem; */
+  padding: 0.1rem;
+}
+.projetpreview i:hover {
+  scale: 1.2;
+}
+.projetpreview .delete-btn {
+  left: 59px;
+}
+.projetpreview .largeview-btn {
+  left: 36px;
+  display: none;
+}
+.mainModaleGallery figure figcaption {
+  cursor: pointer;
+  margin-top: 0.1rem;
+}
+.mainModaleGallery img {
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+  /* object-fit: cover; */
+}
+.mainModaleGallery img:hover {
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+}
+.mainModaleGallery figure:hover > .projetpreview .largeview-btn {
+  display: block;
+}
+.mainModaleGallery figure:focus > .projetpreview .largeview-btn {
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+  display: block;
+}
+/** MODALES GALLERIE PHOTO (end) **/
 
 .loginform_group div {
   display: flex;
