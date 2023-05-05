@@ -203,14 +203,26 @@ function formatWorksInModale(works) {
         deleteConfirmationContainer.style.display = "none";
       };
       // évènement au click sur "Supprimer" :
-      // confirmersuppression.onclick = () => {
-      //   console.log(`Projet n°${works[i].id} supprimé !`);
-      //   deleteWork(works[i].id);
-      //   getWorksInModal();
-      //   deleteConfirmationContainer.style.display = "none";
-      // };
+      confirmersuppression.onclick = () => {
+        console.log(`Projet n°${works[i].id} supprimé !`);
+        deleteWork(works[i].id);
+        displayGalleryInModale();
+        deleteConfirmationContainer.style.display = "none";
+      };
     }
   }
+}
+
+// Fonction de suppression de projet(s) :
+function deleteWork(id) {
+  fetch(`${apiUrl}works/${id}`, {
+    method: "DELETE",
+    headers: {
+      "content-Type": "application/json",
+      accept: "*/*",
+      Authorization: `Bearer ${localStorage.SophieBluelToken}`,
+    },
+  }).catch((error) => console.log(`L'API Works n'a pas répondue : ${error}`));
 }
 
 // Affichage de la gallery dans la modale :
