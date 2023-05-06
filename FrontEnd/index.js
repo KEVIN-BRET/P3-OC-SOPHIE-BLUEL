@@ -234,9 +234,248 @@ async function displayGalleryInModale() {
   formatWorksInModale(worksFromApi);
 }
 
+// Fonction d'ajout de photo :
 function addPhoto() {
+  // on fait disparaitre la premiere modale :
   mainModaleWrapper.style.display = "none";
+  // on affiche la fenêtre d'ajout de photo
   addPhotoWindowWrapper.style.display = "flex";
+  // on pointe le formulaire :
+  const addPhotoForm = document.getElementById("addphotoform");
+
+  // on stock l'état de validation de chaque inputs :
+  let titleIsValid = false;
+  let imageIsValid = false;
+  let categoryIsValid = false;
+
+  //  une fois validés, on stock la valeur des inputs :
+  let title, image, category;
+
+  // changement de couleur du bouton envoyer :
+  function readyToUpload() {
+    // on pointe le bouton submit :
+    const submitPhoto = document.getElementById("submitPhoto");
+    // si tous les inputs sont validé "true"
+    if ((titleIsValid && categoryIsValid && imageIsValid) === true) {
+      // le bouton devient vert :
+      submitPhoto.style.backgroundColor = "var(--middle-green)";
+    } else {
+      // sinon il est gris :
+      submitPhoto.style.backgroundColor = "var(--invalid-btn-grey)";
+    }
+  }
+
+  // injection des catégories dans le formulaire :
+  fetch("http://localhost:5678/api/categories")
+    .then((response) => response.json())
+    .then((data) => {
+      category = data;
+
+      // on pointe le <select> parent des <option value="categorie"> :
+      const addPhotoCatergorie = document.getElementById("categorielist");
+      // on vide son contenu pour éviter les doublons à la réouverture :
+      addPhotoCatergorie.innerHTML = "";
+
+      // on créé le placeholder "choisissez une catégorie" :
+      const categoriePlaceHolder = document.createElement("option");
+      categoriePlaceHolder.innerText = "Choisissez une catégorie";
+      categoriePlaceHolder.value = "";
+      categoriePlaceHolder.setAttribute("disabled", "");
+      categoriePlaceHolder.setAttribute("selected", "");
+      addPhotoCatergorie.appendChild(categoriePlaceHolder);
+
+      // on injecte toutes les catégories :
+      for (let i = 0; i < category.length; i++) {
+        // on récupère le nom & l'id :
+        const nomCategorie = category[i].name;
+        const Categorie = category[i].id;
+        // on créé une balise <option> :
+        const categorieOption = document.createElement("option");
+
+        categorieOption.innerText = nomCategorie;
+        categorieOption.value = `${Categorie}`;
+        addPhotoCatergorie.appendChild(categorieOption);
+      }
+    })
+    .catch((error) => {
+      console.log(`L'API Categories n'a pas répondue : ${error}`);
+      // filtreserror.innerText = "Impossible d'afficher les catégories !";
+    });
+
+  // Récupération de l'image pour l'apercu :
+  function previewImage(e) {
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    // quand le fichier est chargé, on affiche l'apercu :
+    fileReader.addEventListener("load", (e) => displayUploadImage(e));
+  }
+
+  // Afichage de l'apercu de l'image :
+  function displayUploadImage(e) {
+    // on fait disparaitre les options de choix d'image :
+    addPhotoMenu.style.display = "none";
+    // on fait apparaitre l'immage ..
+    const importedPhoto = document.getElementById("importedPhoto");
+    importedPhoto.style.display = "flex";
+    importedPhoto.src = e.target.result;
+    // et son bouton close ..
+    const closeimportedPhoto = document.getElementById("closeimportedPhoto");
+    closeimportedPhoto.style.display = "flex";
+    closeimportedPhoto.title = "Supprimer cette image";
+    // si on clique sur close :
+    closeimportedPhoto.addEventListener("click", (e) => {
+      // on vide la valeur de l'input
+      addPhotoInput.value = "";
+      imageIsValid = false;
+      readyToUpload();
+      // on fait disparaitre l'image et son bouton close
+      importedPhoto.style.display = "none";
+      closeimportedPhoto.style.display = "none";
+      // on fait ré-apparaitre les options de choix d'image :
+      addPhotoMenu.style.display = "flex";
+    });
+  }
+
+  // on pointe et valide l'ajout de photo :
+  const addPhotoInput = document.querySelector('input[id="addphoto"]');
+  // addPhotoInput.addEventListener("change", previewImage);
+  addPhotoInput.addEventListener("change", (e) => {
+    if (!e.target.value.match(/\.(jpe?g|png)$/i)) {
+      errorDisplay("photo", "L'image doit être au format .jpg ou .png");
+      imageIsValid = false;
+      readyToUpload();
+      console.log("mauvais format !!!");
+    } else if (e.target.files[0].size > 4 * 1024 * 1024) {
+      errorDisplay("photo", "L'image ne doit pas dépasser 4 Mo");
+      imageIsValid = false;
+      readyToUpload();
+      console.log("trop grande !!!");
+    } else {
+      errorDisplay("photo", "");
+      imageIsValid = true;
+      readyToUpload();
+      // console.log("image valide !");
+      previewImage(e);
+    }
+  });
+
+  // on pointe et valide le titre :
+  const titlePhotoInput = document.querySelector('input[id="phototitle"]');
+  // on affiche une erreur si la longueur n'est pas bonne :
+  titlePhotoInput.addEventListener("input", (e) => {
+    if (
+      // e.target.value.length > 0 &&
+      e.target.value.length < 3 ||
+      e.target.value.length > 40
+    ) {
+      errorDisplay("title", "Le titre doit contenir entre 3 et 40 caractères");
+      titleIsValid = false;
+      readyToUpload();
+    } else {
+      errorDisplay("title", "");
+      titleIsValid = true;
+      readyToUpload();
+    }
+  });
+
+  // on pointe et valide la liste de catégories :
+  const selectCatInput = document.querySelector('select[id="categorielist"]');
+  // on affiche une erreur si aucune n'est sélectionnée :
+  selectCatInput.addEventListener("change", () => {
+    if (selectCatInput.selectedIndex !== 0) {
+      errorDisplay("categorie", "");
+      categoryIsValid = true;
+      readyToUpload();
+    } else {
+      errorDisplay("categorie", "Vous devez choisir une catégorie");
+      categoryIsValid = false;
+      readyToUpload();
+    }
+  });
+
+  // Envoi du formulaire :
+  addPhotoForm.addEventListener("submit", (e) => {
+    // On evite le rechargement de la page :
+    e.preventDefault();
+    // On valide les inputs :
+    inputsChecker();
+    // si tout les inputs sont validé (="true") :
+    if (title && image && category) {
+      // on passe leur valeur dans l'objet formData :
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("image", image);
+      formData.append("category", category);
+
+      // on envoi la requete POST :
+      fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        body: formData,
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${localStorage.SophieBluelToken}`,
+        },
+      })
+        // on affiche un msg de confirmation si l'envoi à fonctionné :
+        .then(() => alert("Le projet a bien été envoyé !"))
+        // sinon on affiche un msg d'erreur :
+        .catch((error) => alert(`Le projet n'a pas pu être envoyé : ${error}`));
+
+      // une fois que l'image a bien été posté,
+      // on fait disparaitre l'aperçu de l'image :
+      importedPhoto.style.display = "none";
+      closeimportedPhoto.style.display = "none";
+      // on fait ré-apparaitre les options de choix d'image :
+      addPhotoMenu.style.display = "flex";
+      // on vide les inputs :
+      titlePhotoInput.value = "";
+      addPhotoInput.value = "";
+      selectCatInput.value = "";
+      // on vide les variable :
+      title = null;
+      image = null;
+      category = null;
+      // le bouton submit redevient gris :
+      submitPhoto.style.backgroundColor = "var(--invalid-btn-grey)";
+    } else {
+      // si les champs sont mal renseignés on affiche un msg d'erreur :
+      console.log("Veuillez renseigner tous les champs");
+    }
+  });
+
+  // Validation des inputs :
+  function inputsChecker() {
+    // on teste le titre :
+    if (titlePhotoInput.value.length < 3 || titlePhotoInput.value.length > 40) {
+      errorDisplay("title", "Le titre doit contenir entre 3 et 40 caractères");
+      title = null;
+      // on teste la catégoprie :
+    } else if (selectCatInput.selectedIndex === 0) {
+      errorDisplay("categorie", "Vous devez choisir une catégorie");
+      category = null;
+    } else if (
+      // on verifie qu'une image jpeg ou png est présente :
+      !addPhotoInput.value ||
+      !addPhotoInput.value.match(/\.(jpe?g|png)$/i)
+    ) {
+      errorDisplay("photo", "Vous devez choisir une image");
+      image = null;
+      addPhotoInput.value = "";
+    } else {
+      // on retire la class .error et on dit valid=true
+      errorDisplay("title", "", true);
+      errorDisplay("photo", "", true);
+      errorDisplay("categorie", "", true);
+      // on passe la valeur des inputs (validés) à leur variable :
+      title = titlePhotoInput.value;
+      category = selectCatInput.value;
+      image = addPhotoInput.files[0];
+      // l'image doit etre un objet et non une url !
+      // (note pour moi-même ..)
+      // image = addPhotoInput.value;
+    }
+  }
 }
 
 //** Lancement de la page d'accueil :
