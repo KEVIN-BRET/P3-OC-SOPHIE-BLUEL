@@ -266,7 +266,7 @@ function addPhoto() {
   }
 
   // injection des catégories dans le formulaire :
-  fetch("http://localhost:5678/api/categories")
+  fetch(`${apiUrl}categories`)
     .then((response) => response.json())
     .then((data) => {
       category = data;
@@ -409,7 +409,7 @@ function addPhoto() {
       formData.append("category", category);
 
       // on envoi la requete POST :
-      fetch("http://localhost:5678/api/works", {
+      fetch(`${apiUrl}works`, {
         method: "POST",
         body: formData,
         headers: {
