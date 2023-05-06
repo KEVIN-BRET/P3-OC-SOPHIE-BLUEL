@@ -23,7 +23,9 @@
 
 		<!-- Fenêtre principale de la modale (gallerie) -->
 		<div id="mainModaleWrapper" class="modale-wrapper">
-			<i id="closeModale" class="fa-solid fa-xmark"></i>
+			<div class="wrappernav">
+				<i id="closeModale" class="fa-solid fa-xmark"></i>
+			</div>
 			<h3 id="mainModaleTitle">Gallerie photo</h3>
 			<div class="modale-content-container">
 				<div id="mainModaleGallery" class="mainModaleGallery"></div>
@@ -50,50 +52,44 @@
 
 		<!-- Fenêtre d'ajout de photo -->
 		<div id="addPhotoWindowWrapper" class="addphoto-window-wrapper">
-
 			<div class="wrappernav">
 				<i id="returnToGallery" class="fa-solid fa-arrow-left"></i>
 				<i id="closeAddPhotoWindow" class="fa-solid fa-xmark"></i>
 			</div>
 			<h3 id="addphototitle">Ajout photo</h3>
 
-			<!-- Formulaire d'envoi de photo -->
 			<form id="addphotoform" class="addphotoform_group" method="post" enctype="multipart/form-data">
 
 				<div class="inputs-container">
-
+					<!-- Upload photo container -->
 					<div class="photo-container">
-						<div class="addphoto">
-							<div id="addPhotoMenu" class="addphoto-menu">
+						<div class="upload-photo-container">
+							<div id="uploadPhotoMenu" class="upload-photo-menu">
 								<i class="fa-sharp fa-regular fa-image"></i>
 								<label for="addphoto">+ Ajouter photo</label>
-								<input type="file" id="addphoto" name="addphoto" accept="image/png, image/jpeg">
+								<input type="file" id="addphoto" name="addphoto" accept="image/png, image/jpeg"
+									required>
 								<p>jpg, png : 4mo max</p>
 							</div>
-
-							<div id="importedPhotoDisplay" class="importedPhotoDisplay">
+							<div id="uploadPhotoDisplay" class="upload-photo-display">
 								<img id="importedPhoto" class="importedPhoto" src=""></img>
 								<i id="closeimportedPhoto" class="fa-solid fa-xmark"></i>
-
 							</div>
-
 						</div>
-						<span>pas de photo</span>
+						<span></span>
 					</div>
-
+					<!-- Title container -->
 					<div class="title-container">
 						<label for="phototitle">Titre</label>
 						<input type=text name="phototitle" id="phototitle">
 						<span></span>
 					</div>
-
+					<!-- Categories container -->
 					<div class="categorie-container">
 						<label for="categorielist">Catégorie</label>
 						<select name="categorielist" id="categorielist">
-							<!-- <option value="" disabled selected>Choisissez une catégorie</option> -->
-
 						</select>
-						<span>pas de Catégorie</span>
+						<span></span>
 					</div>
 				</div>
 

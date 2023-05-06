@@ -295,9 +295,8 @@ i {
   max-height: calc(100vh - 8rem);
   padding: 1rem;
 }
-.modale-wrapper i {
+.modale-wrapper .wrappernav {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
   font-size: 1.2rem;
 }
@@ -478,11 +477,79 @@ i {
   flex-direction: column;
 }
 .addphoto-window-wrapper form .inputs-container {
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   display: flex;
   padding: 0.5rem;
+  margin-top: 1rem;
   overflow-x: hidden;
   overflow-y: auto;
+}
+.upload-photo-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 170px;
+  background-color: var(--backgroung-blue-light);
+}
+.upload-photo-menu {
+  /* border: 1px solid grey; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.upload-photo-menu i {
+  color: var(--light-grey);
+  font-size: 4rem;
+  margin: 0.4rem 0;
+}
+.upload-photo-menu label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cbd6dc;
+  color: var(--blue-button);
+  font-size: 0.9rem;
+  height: 36px;
+  width: 173px;
+  border-radius: 2rem;
+  margin: 0.5rem 0;
+}
+.upload-photo-menu input {
+  display: none;
+}
+.upload-photo-menu p {
+  color: var(--normal-grey);
+  font-size: 0.6rem;
+}
+.upload-photo-display {
+  position: absolute;
+  visibility: visible;
+}
+.upload-photo-display img {
+  height: 170px;
+}
+.upload-photo-display i {
+  display: none;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  top: 0.2rem;
+  right: 0.2rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  font-size: 1.5rem;
+  background-color: var(--backgroung-color-light);
+  opacity: 0.7;
+}
+#submitPhoto {
+  margin: 1rem auto;
+  background-color: var(--invalid-btn-grey);
 }
 /** fenêtre d'ajout de photo (end) **/
 
@@ -626,15 +693,15 @@ li:hover {
   display: flex;
   flex-direction: column;
 }
-
-.form input {
+select,
+input {
   padding: 0 1rem;
   height: 50px;
   font-size: 1.2em;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-.form label {
+label {
   margin: 2em 0 1em 0;
 }
 .form textarea {

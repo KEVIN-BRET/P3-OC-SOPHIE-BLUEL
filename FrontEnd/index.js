@@ -314,7 +314,7 @@ function addPhoto() {
   // Afichage de l'apercu de l'image :
   function displayUploadImage(e) {
     // on fait disparaitre les options de choix d'image :
-    addPhotoMenu.style.display = "none";
+    uploadPhotoMenu.style.display = "none";
     // on fait apparaitre l'immage ..
     const importedPhoto = document.getElementById("importedPhoto");
     importedPhoto.style.display = "flex";
@@ -333,7 +333,7 @@ function addPhoto() {
       importedPhoto.style.display = "none";
       closeimportedPhoto.style.display = "none";
       // on fait ré-apparaitre les options de choix d'image :
-      addPhotoMenu.style.display = "flex";
+      uploadPhotoMenu.style.display = "flex";
     });
   }
 
@@ -427,7 +427,7 @@ function addPhoto() {
       importedPhoto.style.display = "none";
       closeimportedPhoto.style.display = "none";
       // on fait ré-apparaitre les options de choix d'image :
-      addPhotoMenu.style.display = "flex";
+      uploadPhotoMenu.style.display = "flex";
       // on vide les inputs :
       titlePhotoInput.value = "";
       addPhotoInput.value = "";
