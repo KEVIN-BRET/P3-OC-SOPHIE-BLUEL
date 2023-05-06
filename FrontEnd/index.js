@@ -213,22 +213,6 @@ function formatWorksInModale(works) {
         }, 1000);
       };
     }
-
-    // Ouverture de la modale d'ajout photo :
-    addPhotoBtn.onclick = () => {
-      addPhotoModale();
-      // addPhotoWindow.style.display = "flex";
-    };
-
-    // // Fermeture de la modale d'ajout photo :
-    // closeAddPhotoWindow.onclick = () => {
-    //   addPhotoWindow.style.display = "none";
-    //   getWorksInModal();
-    // };
-    // returnToGallery.onclick = () => {
-    //   addPhotoWindow.style.display = "none";
-    //   getWorksInModal();
-    // };
   }
 }
 
@@ -250,6 +234,11 @@ async function displayGalleryInModale() {
   formatWorksInModale(worksFromApi);
 }
 
+function addPhoto() {
+  mainModaleWrapper.style.display = "none";
+  addPhotoWindowWrapper.style.display = "flex";
+}
+
 //** Lancement de la page d'accueil :
 // On affiche la gallerie et les catégories :
 displayMainGallery();
@@ -257,7 +246,7 @@ displayCategoriesButtons();
 
 //*--- EVENTS LISTENERS ---*//
 
-// au click sur "logout" ..
+// au click sur "logout" :
 logoutlink.addEventListener("click", () => {
   // on supprime le token :
   localStorage.SophieBluelToken = "";
@@ -265,15 +254,16 @@ logoutlink.addEventListener("click", () => {
   window.location.href = "index.html";
 });
 
-//** ----- ouverture / fermeture de la modale ----- **//
-
+//**  ouverture / fermeture / navigation des modales :
 // la modale s'ouvre au click sur le bouton modifier :
-galleryEdition.addEventListener("click", (e) => {
+galleryEdition.addEventListener("click", () => {
   modale.style.display = "flex";
+  mainModaleWrapper.style.display = "flex";
+  addPhotoWindowWrapper.style.display = "none";
   displayGalleryInModale();
 });
 // la modale se ferme au click sur le bouton fermer (x) :
-closeModale.addEventListener("click", (e) => {
+closeModale.addEventListener("click", () => {
   modale.style.display = "none";
   displayMainGallery();
 });
@@ -286,9 +276,23 @@ window.addEventListener("keydown", (e) => {
 });
 // ou en cliaquant à coté de la modale :
 window.addEventListener("click", (e) => {
-  // console.log(e);
   if (e.target == modale) {
     modale.style.display = "none";
     displayMainGallery();
   }
+});
+// Ouverture de la modale d'ajout photo :
+addPhotoBtn.addEventListener("click", () => {
+  addPhoto();
+});
+// Fermeture de la modale d'ajout photo :
+closeAddPhotoWindow.addEventListener("click", () => {
+  modale.style.display = "none";
+  displayMainGallery();
+});
+// retour à la première modale (gallerie) :
+returnToGallery.addEventListener("click", () => {
+  addPhotoWindowWrapper.style.display = "none";
+  mainModaleWrapper.style.display = "flex";
+  displayGalleryInModale();
 });

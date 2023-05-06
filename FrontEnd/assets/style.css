@@ -445,7 +445,7 @@ i {
 
 /** fenêtre d'ajout de photo (start) **/
 #addPhotoWindowWrapper {
-  /* display: none; */
+  display: none;
 }
 .addphoto-window-wrapper {
   border: 1px solid grey;
