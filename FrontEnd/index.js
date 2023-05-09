@@ -73,13 +73,11 @@ function formatCategories(categories) {
 
     // au click, il affiche les projets de sa catégorie,
     // et le bouton change de style ("btn-clicked") :
-    document
-      .getElementById(`filter-btn-${Categorie}`)
-      .addEventListener("click", async () => {
-        const worksFromApi = await getWorks();
-        formatWorks(worksFromApi, Categorie);
-        boutonFiltreActif(boutonFiltrerCategories);
-      });
+    boutonFiltrerCategories.addEventListener("click", async () => {
+      const worksFromApi = await getWorks();
+      formatWorks(worksFromApi, Categorie);
+      boutonFiltreActif(boutonFiltrerCategories);
+    });
   }
   // changer le style d'un bouton de filtre actif :
   function boutonFiltreActif(bouton) {
@@ -87,6 +85,35 @@ function formatCategories(categories) {
       btn.classList.remove("btn-filter-active");
     });
     bouton.classList.add("btn-filter-active");
+  }
+}
+
+// Format d'affichage des catégories dans le formulaire d'ajout :
+function formatCategoriesSelect(categories) {
+  // on pointe le <select> parent des <option value="categorie"> :
+  const addPhotoCatergorie = document.getElementById("categorielist");
+  // on vide son contenu pour éviter les doublons à la réouverture :
+  addPhotoCatergorie.innerHTML = "";
+
+  // on créé le placeholder "choisissez une catégorie" :
+  const categoriePlaceHolder = document.createElement("option");
+  categoriePlaceHolder.innerText = "Choisissez une catégorie";
+  categoriePlaceHolder.value = "";
+  categoriePlaceHolder.setAttribute("disabled", "");
+  categoriePlaceHolder.setAttribute("selected", "");
+  addPhotoCatergorie.appendChild(categoriePlaceHolder);
+
+  // on injecte toutes les catégories :
+  for (let i = 0; i < categories.length; i++) {
+    // on récupère le nom & l'id :
+    const nomCategorie = categories[i].name;
+    const Categorie = categories[i].id;
+    // on créé une balise <option> :
+    const categorieOption = document.createElement("option");
+
+    categorieOption.innerText = nomCategorie;
+    categorieOption.value = `${Categorie}`;
+    addPhotoCatergorie.appendChild(categorieOption);
   }
 }
 
@@ -130,6 +157,12 @@ async function displayMainGallery() {
 async function displayCategoriesButtons() {
   const categoriesFromApi = await getCategories();
   formatCategories(categoriesFromApi);
+}
+
+// Afficher les catégories dans la modale d'ajout de photo :
+async function displayCategoriesSelect() {
+  const categoriesFromApi = await getCategories();
+  formatCategoriesSelect(categoriesFromApi);
 }
 
 // Format d'affichage de la gallerie de la modale :
@@ -265,42 +298,8 @@ function addPhoto() {
     }
   }
 
-  // injection des catégories dans le formulaire :
-  fetch(`${apiUrl}categories`)
-    .then((response) => response.json())
-    .then((data) => {
-      category = data;
-
-      // on pointe le <select> parent des <option value="categorie"> :
-      const addPhotoCatergorie = document.getElementById("categorielist");
-      // on vide son contenu pour éviter les doublons à la réouverture :
-      addPhotoCatergorie.innerHTML = "";
-
-      // on créé le placeholder "choisissez une catégorie" :
-      const categoriePlaceHolder = document.createElement("option");
-      categoriePlaceHolder.innerText = "Choisissez une catégorie";
-      categoriePlaceHolder.value = "";
-      categoriePlaceHolder.setAttribute("disabled", "");
-      categoriePlaceHolder.setAttribute("selected", "");
-      addPhotoCatergorie.appendChild(categoriePlaceHolder);
-
-      // on injecte toutes les catégories :
-      for (let i = 0; i < category.length; i++) {
-        // on récupère le nom & l'id :
-        const nomCategorie = category[i].name;
-        const Categorie = category[i].id;
-        // on créé une balise <option> :
-        const categorieOption = document.createElement("option");
-
-        categorieOption.innerText = nomCategorie;
-        categorieOption.value = `${Categorie}`;
-        addPhotoCatergorie.appendChild(categorieOption);
-      }
-    })
-    .catch((error) => {
-      console.log(`L'API Categories n'a pas répondue : ${error}`);
-      // filtreserror.innerText = "Impossible d'afficher les catégories !";
-    });
+  // On injecte les catégories dans le formulaire :
+  displayCategoriesSelect();
 
   // Récupération de l'image pour l'apercu :
   function previewImage(e) {
