@@ -28,6 +28,8 @@ Mes 3 missions principales à développer sont :
 - La modale permettant d'uploader de nouveaux médias (code à créer from scratch).
 Pour cela, je vais m'appuyer du code existant HTML & CSS pour développer la partie Javascript du site et donc faire appel aux API mises à ma dispostion.
 
+- [Le code back-end et le code front-end pour démarrer]([https://drive.google.com/file/d/10EyQ0lYUNOIN9aWb_Xg3imUqzkTeHGiU/view?usp=sharing](https://github.com/OpenClassrooms-Student-Center/Portfolio-architecte-sophie-bluel))
+
 
 
 
