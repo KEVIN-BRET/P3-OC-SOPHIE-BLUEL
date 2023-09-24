@@ -30,6 +30,10 @@ Pour cela, je vais m'appuyer du code existant HTML & CSS pour développer la par
 
 [Code back-end & front-end pour démarrer](https://github.com/OpenClassrooms-Student-Center/Portfolio-architecte-sophie-bluel)
 
+Identifiants pour le test :
+email: sophie.bluel@test.tld
+password: S0phie 
+
 
 
 
